@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM - Minha Oficina</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER COM LOGO -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img id="logoImg" src="https://via.placeholder.com/150x50?text=Minha+Oficina" alt="Logo" class="logo">
+            </div>
+            <h1>CRM - Sistema de Oficina</h1>
+            <button class="btn-settings">⚙️ Configurações</button>
+        </div>
+    </header>
+
+    <!-- MENU LATERAL -->
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <button class="nav-btn active" data-page="clientes">👥 Clientes</button>
+                <button class="nav-btn" data-page="servicos">🔧 Serviços</button>
+                <button class="nav-btn" data-page="agendamentos">📅 Agendamentos</button>
+                <button class="nav-btn" data-page="relatorios">📊 Relatórios</button>
+                <button class="nav-btn" data-page="configuracoes">⚙️ Configurações</button>
+            </nav>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="content">
+            
+            <!-- PÁGINA: CLIENTES -->
+            <section id="clientes" class="page active">
+                <div class="page-header">
+                    <h2>Gerenciar Clientes</h2>
+                    <button class="btn btn-primary" onclick="abrirFormularioCliente()">+ Novo Cliente</button>
+                </div>
+
+                <div class="search-container">
+                    <input type="text" id="searchCliente" placeholder="🔍 Pesquisar cliente..." class="search-input">
+                </div>
+
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Carro</th>
+                            <th>Placa</th>
+                            <th>Última Visita</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaClientes">
+                        <!-- Preenchida com JavaScript -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- PÁGINA: SERVIÇOS -->
+            <section id="servicos" class="page">
+                <div class="page-header">
+                    <h2>Serviços Realizados</h2>
+                    <button class="btn btn-primary" onclick="abrirFormularioServico()">+ Novo Serviço</button>
+                </div>
+
+                <div class="search-container">
+                    <input type="text" id="searchServico" placeholder="🔍 Pesquisar serviço..." class="search-input">
+                </div>
+
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaServicos">
+                        <!-- Preenchida com JavaScript -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- PÁGINA: AGENDAMENTOS -->
+            <section id="agendamentos" class="page">
+                <div class="page-header">
+                    <h2>Agendamentos</h2>
+                    <button class="btn btn-primary" onclick="abrirFormularioAgendamento()">+ Novo Agendamento</button>
+                </div>
+
+                <div id="calendarioAgendamentos" class="calendario">
+                    <!-- Preenchido com JavaScript -->
+                </div>
+
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Serviço</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaAgendamentos">
+                        <!-- Preenchida com JavaScript -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- PÁGINA: RELATÓRIOS -->
+            <section id="relatorios" class="page">
+                <div class="page-header">
+                    <h2>Relatórios</h2>
+                </div>
+
+                <div class="relatorios-container">
+                    <div class="card-relatorio">
+                        <h3>Total de Clientes</h3>
+                        <p class="numero" id="totalClientes">0</p>
+                    </div>
+
+                    <div class="card-relatorio">
+                        <h3>Serviços Este Mês</h3>
+                        <p class="numero" id="servicosAnoMes">0</p>
+                    </div>
+
+                    <div class="card-relatorio">
+                        <h3>Faturamento</h3>
+                        <p class="numero" id="faturamento">R$ 0,00</p>
+                    </div>
+
+                    <div class="card-relatorio">
+                        <h3>Taxa de Retorno</h3>
+                        <p class="numero" id="taxaRetorno">0%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PÁGINA: CONFIGURAÇÕES -->
+            <section id="configuracoes" class="page">
+                <div class="page-header">
+                    <h2>Configurações do CRM</h2>
+                </div>
+
+                <div class="config-form">
+                    <h3>Personalização</h3>
+                    
+                    <div class="form-group">
+                        <label>Nome da Oficina:</label>
+                        <input type="text" id="nomeOficina" class="input" placeholder="Digite o nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Logo da Oficina:</label>
+                        <input type="file" id="logoUpload" accept="image/*" class="input">
+                        <small>Formatos aceitos: PNG, JPG, GIF (máx 2MB)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cor Principal:</label>
+                        <input type="color" id="corPrincipal" class="input" value="#ff6b35">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cor Secundária:</label>
+                        <input type="color" id="corSecundaria" class="input" value="#1a1a1a">
+                    </div>
+
+                    <button class="btn btn-primary" onclick="salvarConfiguracoes()">💾 Salvar Configurações</button>
+                    <button class="btn btn-secondary" onclick="exportarDados()">📥 Exportar Dados (JSON)</button>
+                    <button class="btn btn-secondary" onclick="importarDados()">📤 Importar Dados</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MODAL: NOVO CLIENTE -->
+    <div id="modalCliente" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalCliente')">&times;</span>
+            <h2>Novo Cliente</h2>
+            
+            <form id="formCliente">
+                <div class="form-group">
+                    <label>Nome *</label>
+                    <input type="text" id="nomeCliente" required class="input">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Telefone *</label>
+                        <input type="tel" id="telefoneCliente" required class="input" placeholder="(11) 98765-4321">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="emailCliente" class="input">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Carro *</label>
+                        <input type="text" id="carroCliente" required class="input" placeholder="Ex: Honda Civic">
+                    </div>
+                    <div class="form-group">
+                        <label>Placa *</label>
+                        <input type="text" id="placaCliente" required class="input" placeholder="ABC-1234">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Observações</label>
+                    <textarea id="observacaoCliente" class="input" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">✅ Adicionar Cliente</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: NOVO SERVIÇO -->
+    <div id="modalServico" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalServico')">&times;</span>
+            <h2>Novo Serviço</h2>
+            
+            <form id="formServico">
+                <div class="form-group">
+                    <label>Cliente *</label>
+                    <select id="clienteServico" required class="input">
+                        <option value="">Selecione um cliente</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição do Serviço *</label>
+                    <textarea id="descricaoServico" required class="input" rows="3" placeholder="Ex: Troca de óleo, revisão..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Valor *</label>
+                        <input type="number" id="valorServico" required class="input" placeholder="0.00" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="statusServico" class="input">
+                            <option value="concluído">✅ Concluído</option>
+                            <option value="pendente">⏳ Pendente</option>
+                            <option value="em andamento">🔧 Em Andamento</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Data do Serviço</label>
+                    <input type="date" id="dataServico" class="input">
+                </div>
+
+                <button type="submit" class="btn btn-primary">✅ Adicionar Serviço</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: NOVO AGENDAMENTO -->
+    <div id="modalAgendamento" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalAgendamento')">&times;</span>
+            <h2>Novo Agendamento</h2>
+            
+            <form id="formAgendamento">
+                <div class="form-group">
+                    <label>Cliente *</label>
+                    <select id="clienteAgendamento" required class="input">
+                        <option value="">Selecione um cliente</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data *</label>
+                        <input type="date" id="dataAgendamento" required class="input">
+                    </div>
+                    <div class="form-group">
+                        <label>Hora *</label>
+                        <input type="time" id="horaAgendamento" required class="input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Serviço Previsto</label>
+                    <input type="text" id="servicoAgendamento" class="input" placeholder="Ex: Troca de óleo">
+                </div>
+
+                <button type="submit" class="btn btn-primary">✅ Agendar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- INPUT HIDDEN PARA IMPORTAR -->
+    <input type="file" id="importFile" accept=".json" style="display:none;">
+
+    <script src="script.js"></script>
+</body>
+</html>
